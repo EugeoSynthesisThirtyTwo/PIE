@@ -13,11 +13,11 @@ L'algorithme "a star" en lui même correspond aux fichiers:
 	- astar.h
 	- astar.cpp
 
-Les dépendences de la SDL (.dll, .lib, .h) se trouvent dans le dossier PathFinding/Dependencies/SDL2.
-La présentation du projet est à la racine du projet.
+Les dépendences de la SDL (.dll, .lib, .h) se trouvent dans le dossier
+PathFinding/Dependencies/SDL2.
 
-Lors de la distribution du programme, les fichiers .dll et le dossier
-"ressources" : "Tetris/Tetris/ressources" doivent être dans le même dossier que l'exécutable.
+Lors de la distribution du programme, les fichiers .dll doivent être
+dans le même dossier que l'exécutable.
 
 ----------------------------------- Controles ----------------------------------------
 
