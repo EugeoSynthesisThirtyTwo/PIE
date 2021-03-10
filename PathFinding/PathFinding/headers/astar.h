@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include <algorithm>
 
 #include "grid.h"
 #include "node.h"
@@ -15,17 +14,22 @@ public:
 	Grid& grid;
 	
 private:
+	int widthNodes, heightNodes;
 	Node** nodes;
 	std::vector<Node*> priority;
 
 public:
 	std::vector<Node*> explored;
 
-public: AStar(Grid& grid);
+public:
+	AStar(Grid& grid);
+	
+	~AStar();
 
-public: ~AStar();
+	std::vector<std::pair<int, int>> findPath(int xstart, int ystart, int xend, int yend);
 
-public: std::vector<std::pair<int, int>> findPath(int xstart, int ystart, int xend, int yend);
+private:
+	void resetNodes();
 
-public: void resetNodes();
+	void deleteNodes();
 };

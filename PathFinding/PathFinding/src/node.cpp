@@ -1,9 +1,9 @@
 #include "node.h"
 
-Node::Node(): x(0), y(0), obstacle(false) {}
+Node::Node() {}
 
-Node::Node(int x, int y, bool obstacle):
-	x(x), y(y), obstacle(obstacle) {}
+Node::Node(int x, int y, bool obstacle, float malus)
+	: x(x), y(y), obstacle(obstacle), malus(malus) {}
 
 void Node::update(const Node* parent, const Node* goal, float dist)
 {
@@ -28,7 +28,16 @@ void Node::update(const Node* parent, const Node* goal, float dist)
 	}
 }
 
-double Node::heuristic(const Node* goal) const
+void Node::reset()
+{
+	parent = nullptr;
+	global = 0;
+	local = 0;
+	initialized = false;
+	explored = false;
+}
+
+float Node::heuristic(const Node* goal) const
 {
 	int dx = goal->x - x, dy = goal->y - y;
 	return sqrt(dx * dx + dy * dy);

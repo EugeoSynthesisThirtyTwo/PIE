@@ -1,35 +1,20 @@
+#include <algorithm>
+
 #include "astar.h"
 
 AStar::AStar(Grid& grid)
 	: grid(grid)
 {
-	size_t width = grid.getWidth(), height = grid.getHeight();
-	nodes = new Node*[height];
+	nodes = nullptr;
+	widthNodes = 0;
+	heightNodes = 0;
 
-	for (size_t y = 0; y < height; y++)
-	{
-		nodes[y] = new Node[width];
-
-		for (size_t x = 0; x < width; x++)
-		{
-			Node& node = nodes[y][x];
-			node.x = x;
-			node.y = y;
-			node.obstacle = grid.at(x, y);
-		}
-	}
+	resetNodes();
 }
 
 AStar::~AStar()
 {
-	size_t height = grid.getHeight();
-
-	for (size_t i = 0; i < height; i++)
-		delete[] nodes[i];
-
-	delete[] nodes;
-
-	priority.~vector();
+	deleteNodes();
 }
 
 std::vector<std::pair<int, int>> AStar::findPath(int xstart, int ystart, int xend, int yend)
@@ -37,18 +22,18 @@ std::vector<std::pair<int, int>> AStar::findPath(int xstart, int ystart, int xen
 	if (!(grid.isInside(xstart, ystart) && grid.isInside(xend, yend)))
 		return std::vector<std::pair<int, int>>();
 
+	resetNodes();
+
 	Node* start = &nodes[ystart][xstart];
 	Node* end = &nodes[yend][xend];
 
-	priority.reserve(grid.getWidth() * grid.getHeight());
-	explored.clear();
-	explored.reserve(grid.getWidth() * grid.getHeight());
-
 	if (start->obstacle || end->obstacle)
-	{
-		resetNodes();
 		return std::vector<std::pair<int, int>>();
-	}
+
+	priority.clear();
+	priority.reserve(grid.getWidth()* grid.getHeight());
+	explored.clear();
+	explored.reserve(grid.getWidth()* grid.getHeight());
 
 	start->update(nullptr, end, 0);
 	priority.push_back(start);
@@ -117,26 +102,45 @@ std::vector<std::pair<int, int>> AStar::findPath(int xstart, int ystart, int xen
 
 		std::reverse(path.begin(), path.end());
 	}
-	
-	resetNodes();
-	priority.clear();
 
 	return path;
 }
 
 void AStar::resetNodes()
 {
-	for (int y = 0; y < grid.getHeight(); y++)
-		for (int x = 0; x < grid.getWidth(); x++)
+	size_t width = grid.getWidth(), height = grid.getHeight();
+
+	if (grid.getWidth() != widthNodes || grid.getHeight() != heightNodes)
+	{
+		deleteNodes();
+		nodes = new Node*[height];
+
+		for (size_t y = 0; y < height; y++)
+			nodes[y] = new Node[width];
+
+		widthNodes = width;
+		heightNodes = height;
+	}
+
+	float malus = 1.f / (width * height);
+		
+	for (int y = 0; y < height; y++)
+		for (int x = 0; x < width; x++)
 		{
 			Node& node = nodes[y][x];
 			node.x = x;
 			node.y = y;
 			node.obstacle = grid.at(x, y);
-			node.parent = nullptr;
-			node.global = 0;
-			node.local = 0;
-			node.initialized = false;
-			node.explored = false;
+			node.malus = malus;
+			node.reset();
 		}
+}
+
+void AStar::deleteNodes()
+{
+	for (size_t i = 0; i < heightNodes; i++)
+		delete[] nodes[i];
+
+	delete[] nodes;
+	nodes = nullptr;
 }

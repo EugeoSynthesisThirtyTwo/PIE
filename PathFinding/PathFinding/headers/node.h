@@ -7,8 +7,9 @@ class Node
 	friend class AStar;
 
 public:
-	int x, y;
-	bool obstacle;
+	int x = 0, y = 0;
+	bool obstacle = false;
+	float malus = 0;
 	const Node* parent = nullptr;
 
 private:
@@ -16,12 +17,16 @@ private:
 	bool initialized = false;
 	bool explored = false;
 
-public: Node();
+public:
+	Node();
+	
+	Node(int x, int y, bool obstacle = false, float malus = 0);
 
-public: Node(int x, int y, bool obstacle = false);
+	/* dist est la distance avec le parent */
+	void update(const Node* parent, const Node* goal, float dist);
 
-/* dist est la distance avec le parent */
-public: void update(const Node* parent, const Node* goal, float dist);
+	void reset();
 
-private: double heuristic(const Node* goal) const;
+private:
+	float heuristic(const Node* goal) const;
 };
