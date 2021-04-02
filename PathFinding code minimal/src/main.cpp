@@ -56,9 +56,22 @@ void savePath(std::string filePath, const std::vector<std::pair<int, int>>& path
 
 int main(int argc, char** argv)
 {
-	Grid grid = Grid::load("pacman_map.bin");
+	if (argc != 7)
+	{
+		std::cerr << "format : ./PathFinding map.bin x_start y_start x_end y_end path.txt";
+		exit(EXIT_FAILURE);
+	}
+
+	Grid grid = Grid::load(argv[1]);
 	AStar astar(grid);
-	std::vector<std::pair<int, int>> path = astar.findPath(0, 0, 10, 16);
-	savePath("path.txt", path);
+	std::vector<std::pair<int, int>> path = astar.findPath(
+		std::stoi(argv[2]), std::stoi(argv[3]),
+		std::stoi(argv[4]), std::stoi(argv[5])
+	);
+
+	savePath(argv[6], path);
+
+	std::cout << "success" << std::endl;
+
 	return 0;
 }
