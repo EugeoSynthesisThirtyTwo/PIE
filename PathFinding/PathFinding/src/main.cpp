@@ -13,6 +13,55 @@
 //#define FULL_SCREEN
 #define FPS 60
 
+void savePath(std::string filePath, const std::vector<std::pair<int, int>>& path)
+{
+	std::ofstream ofs = std::ofstream(filePath);
+
+	if (ofs.is_open())
+	{
+		int imax = path.size() - 1;
+		int dx, dy;
+
+		for (int i = 0; i < imax; i++)
+		{
+			dx = path[i + 1].first - path[i].first;
+			dy = path[i + 1].second - path[i].second;
+
+			if (dx == -1)
+			{
+				if (dy == -1)
+					ofs << '7';
+				else if (dy == 0)
+					ofs << '6';
+				else if (dy == 1)
+					ofs << '5';
+			}
+			else if (dx == 0)
+			{
+				if (dy == -1)
+					ofs << '0';
+				else if (dy == 1)
+					ofs << '4';
+			}
+			else if (dx == 1)
+			{
+				if (dy == -1)
+					ofs << '1';
+				else if (dy == 0)
+					ofs << '2';
+				else if (dy == 1)
+					ofs << '3';
+			}
+		}
+
+		ofs.close();
+	}
+	else
+	{
+		throw "can't open " + filePath;
+	}
+}
+
 void drawCases(SDL_Renderer* renderer, AStar& astar)
 {
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
@@ -60,6 +109,7 @@ void drawPath(SDL_Renderer* renderer, AStar& astar, int x_start, int y_start, in
 	}
 
 	std::vector<std::pair<int, int>> path = astar.findPath(x_start, y_start, x_end, y_end);
+	savePath("path.txt", path);
 
 	SDL_Point current = {0, 0}, prev;
 	bool initialized = false;

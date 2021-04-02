@@ -13,7 +13,7 @@ public:
 		size_t cap = std::vector<T>::capacity();
 
 		if (cap <= std::vector<T>::size())
-			std::vector<T>::reserve(cap + cap / 2);
+			std::vector<T>::reserve(2 * cap);
 
 		std::vector<T>::push_back(value);
 	}
@@ -23,7 +23,7 @@ public:
 		size_t cap = std::vector<T>::capacity();
 
 		if (cap <= std::vector<T>::size())
-			std::vector<T>::reserve(cap + cap / 2);
+			std::vector<T>::reserve(2 * cap);
 
 		std::vector<T>::push_back(std::move(value));
 	}
@@ -34,7 +34,7 @@ public:
 		size_t cap = std::vector<T>::capacity();
 
 		if (cap <= std::vector<T>::size())
-			std::vector<T>::reserve(cap + cap / 2);
+			std::vector<T>::reserve(2 * cap);
 
 		std::vector<T>::emplace_back(std::forward<Args>(args)...);
 		return std::vector<T>::back();
