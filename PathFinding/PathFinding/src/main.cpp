@@ -167,7 +167,7 @@ void loop(SDL_Renderer* renderer)
 	bool continuer = true;
 	int pressed = 0;
 
-	Grid grid(width / 20, height / 20);
+	Grid grid(10, 10);
 	AStar astar(grid);
 
 	int x_start = -1, y_start = -1;
