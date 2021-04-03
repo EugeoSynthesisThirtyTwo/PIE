@@ -165,7 +165,6 @@
     <ClCompile Include="src\node.cpp" />
     <ClCompile Include="src\SDL2_framerate.c" />
     <ClCompile Include="src\SDL2_gfxPrimitives.c" />
-    <ClCompile Include="src\SDL2_imageFilter.c" />
     <ClCompile Include="src\SDL2_rotozoom.c" />
     <ClCompile Include="src\serializer.cpp" />
   </ItemGroup>

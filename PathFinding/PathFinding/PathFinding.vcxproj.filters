@@ -39,9 +39,6 @@
     <ClCompile Include="src\SDL2_framerate.c">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\SDL2_imageFilter.c">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="src\SDL2_rotozoom.c">
       <Filter>Fichiers sources</Filter>
     </ClCompile>

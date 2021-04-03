@@ -1,8 +1,2 @@
-﻿  astar.cpp
-  main.cpp
-  Generating code
-  3 of 406 functions ( 0.7%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
-  PathFinding.vcxproj -> C:\Users\Kirito\Documents\Programmes\C++\PathFinding\bin\Win32\Release\PathFinding.exe
+﻿  SDL2_gfxPrimitives.c
+C:\Users\Kirito\Documents\Programmes\C++\PathFinding\PathFinding\src\SDL2_gfxPrimitives.c(1772,1): error C2169: 'lrint': intrinsic function, cannot be defined
