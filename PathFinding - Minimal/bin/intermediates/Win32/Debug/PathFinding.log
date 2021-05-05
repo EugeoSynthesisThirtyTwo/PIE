@@ -1,0 +1,12 @@
+﻿  astar.cpp
+C:\Users\Kirito\Documents\Programmes\C++\PathFinding - Minimal\PathFinding\src\astar.cpp(127,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Kirito\Documents\Programmes\C++\PathFinding - Minimal\PathFinding\src\astar.cpp(128,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Kirito\Documents\Programmes\C++\PathFinding - Minimal\PathFinding\src\astar.cpp(141,23): warning C4018: '<': signed/unsigned mismatch
+  grid.cpp
+  main.cpp
+  node.cpp
+C:\Users\Kirito\Documents\Programmes\C++\PathFinding - Minimal\PathFinding\src\node.cpp(22,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Kirito\Documents\Programmes\C++\PathFinding - Minimal\PathFinding\src\node.cpp(43,13): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  serializer.cpp
+  Generating Code...
+  PathFinding.vcxproj -> C:\Users\Kirito\Documents\Programmes\C++\PathFinding - Minimal\bin\Win32\Debug\PathFinding.exe

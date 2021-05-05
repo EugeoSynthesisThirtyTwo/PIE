@@ -1,2 +1,0 @@
-﻿  SDL2_gfxPrimitives.c
-C:\Users\Kirito\Documents\Programmes\C++\PathFinding\PathFinding\src\SDL2_gfxPrimitives.c(1772,1): error C2169: 'lrint': intrinsic function, cannot be defined
